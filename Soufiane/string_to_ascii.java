@@ -1,18 +1,28 @@
-package RSA;
-import java.io.*;
-import java.util.ArrayList;
+package RSA.Soufiane;
+import java.util.Scanner;
 
 public class string_to_ascii {
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static String convert() {
+        Scanner sc = new Scanner(System.in);
+
         System.out.println("Geben Sie eine Zeichenkette ein: ");
-        String eingabe = br.readLine();
+        String eingabe = sc.nextLine();
 
-        for (int i=0; i< eingabe.length(); i++) {
-            char zeichen = eingabe.charAt(i);
-            int asciiwert = (int) zeichen;
+        int[] asciiArray = zeichenZuAsciiArray(eingabe);
+        System.out.println("ASCII-Werte der eingegebenen Werte: ");
 
-            System.out.println("Das Zeichen " + zeichen + " hat den ASCII-Wert: " + asciiwert);
+        for (int i = 0; i < asciiArray.length; i++) {
+            System.out.println(eingabe.charAt(i) + " -> " + asciiArray[i]);
         }
+        return eingabe;
+    }
+
+    public static int[] zeichenZuAsciiArray(String eingabe) {
+        int[] asciiArray = new int[eingabe.length()];
+
+        for (int i = 0; i < eingabe.length(); i++) {
+            asciiArray[i] = (int) eingabe.charAt(i);
+        }
+        return asciiArray;
     }
 }

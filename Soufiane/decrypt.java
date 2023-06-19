@@ -1,21 +1,38 @@
-package RSA_Github.Soufiane;
+package RSA.Soufiane;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class decrypt {
     public static void main(String[] args) {
-        List <BigInteger> messages = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
 
-        messages.add(new BigInteger("14206"));
-        messages.add(new BigInteger("98538"));
-        messages.add(new BigInteger("28159"));
-        messages.add(new BigInteger("68228"));
-        messages.add(new BigInteger("6883"));
-        messages.add(new BigInteger("41872"));
+        System.out.println("Wie viele Elemente möchten Sie eingeben?");
+        int n = sc.nextInt();
 
-        BigInteger d = new BigInteger("113433");
-        BigInteger N = new BigInteger("117349");
+        BigInteger[] messages = new BigInteger[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.printf("Geben Sie das Element " + (i + 1) + " ein:");
+            messages[i] = sc.nextBigInteger();
+        }
+
+        // druckt das Arrays aus
+        for (int i = 0; i < n; i++) {
+            System.out.println("Element " + (i + 1) + ": " + messages[i]);
+        }
+
+        System.out.println("Geben Sie den Wert für e ein: ");
+        BigInteger e = sc.nextBigInteger();
+
+        System.out.println("Geben Sie den Wert für N ein: ");
+        BigInteger N = sc.nextBigInteger();
+
+        System.out.println("Geben Sie den Wert für d ein: ");
+        BigInteger d = sc.nextBigInteger();
+
+        sc.close();
 
         for (BigInteger c : messages) {
             BigInteger m = c.modPow(d, N);

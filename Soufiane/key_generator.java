@@ -1,4 +1,4 @@
-package RSA_Github.Soufiane;
+package RSA.Soufiane;
 import java.io.*;
 import java.math.BigInteger;
 
@@ -25,8 +25,5 @@ public class key_generator {
 
         BigInteger d = e.modInverse(phi);
         System.out.println("Private Key: " + d + " " + N);
-    }
-    public string_to_ascii() {
-
     }
 }
