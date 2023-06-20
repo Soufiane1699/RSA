@@ -1,4 +1,8 @@
 package RSA.Soufiane;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -40,7 +44,6 @@ public class Main {
 
         String ascii_message = string_to_ascii.convert();
         BigInteger[] encrypted_message = encrypt.encryption(ascii_message);
-
-
+         */
     }
 }

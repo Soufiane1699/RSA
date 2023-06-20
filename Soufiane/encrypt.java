@@ -28,9 +28,6 @@ public class encrypt {
                 System.out.println("Soll für e der Standardwert genommen werden: (true/false)");
 
                 BigInteger e;
-                if (eingabe) {
-
-                }
                 System.out.println("Geben Sie den Wert für E ein: ");
                 e = sc.nextBigInteger();
 
