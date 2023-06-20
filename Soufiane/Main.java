@@ -44,6 +44,6 @@ public class Main {
 
         String ascii_message = string_to_ascii.convert();
         BigInteger[] encrypted_message = encrypt.encryption(ascii_message);
-         */
+
     }
 }
