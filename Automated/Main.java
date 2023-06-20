@@ -32,7 +32,6 @@ public class Main {
         nField.setEditable(false);
         phiField.setEditable(false);
         eField.setEditable(false);
-        publicKey.setEditable(false);
 
         primeButton.addActionListener(new ActionListener() {
             @Override
