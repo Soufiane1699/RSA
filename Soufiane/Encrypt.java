@@ -1,10 +1,8 @@
 package RSA.Soufiane;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class encrypt {
+public class Encrypt {
         public static BigInteger e;
         public static BigInteger N;
         public static BigInteger[] encryption(String ascii_message) {

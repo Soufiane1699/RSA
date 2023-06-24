@@ -1,24 +1,28 @@
 package RSA.Automated;
+import java.math.BigInteger;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main {
-    static int p, q, n, phi, exponent;
+    static BigInteger p, q, n, phi, e, d;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("RSA Key Generator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBackground(Color.GREEN);
-        frame.setSize(500, 500);
+        frame.setSize(700, 500);
         frame.setLayout(new FlowLayout());
+
+
 
         PrimeNumberGenerator primeGenerator = new PrimeNumberGenerator();
 
         JButton primeButton = new JButton("Primzahlen generieren");
         JButton yesNoButton = new JButton("E auf Default setzen (65537)");
         JButton phiButton = new JButton("Berechnen von phi(p * q) ");
+
         JTextField pField = new JTextField(10);
         JTextField qField = new JTextField(10);
         JTextField nField = new JTextField(10);
@@ -36,9 +40,9 @@ public class Main {
         primeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                p = primeGenerator.getRandomPrime();
-                q = primeGenerator.getRandomPrime();
-                n = p * q;
+                p = BigInteger.valueOf(primeGenerator.getRandomPrime());
+                q = BigInteger.valueOf(primeGenerator.getRandomPrime());
+                n = p.multiply(q);
                 pField.setText(String.valueOf(p));
                 qField.setText(String.valueOf(q));
                 nField.setText(String.valueOf(n));
@@ -48,22 +52,33 @@ public class Main {
         phiButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int phi = (p -1) * (q - 1);
+                BigInteger phi = (p.subtract(BigInteger.valueOf(1)).multiply(q.subtract(BigInteger.valueOf(1))));
                 phiField.setText(String.valueOf(phi));
             }
         });
 
         yesNoButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent event) {
                 int diaglogResult = JOptionPane.showConfirmDialog(null, "Möchten Sie E auf 65537 setzen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
                 if (diaglogResult == JOptionPane.YES_OPTION) {
-                    int exponent = 65537;
-                    eField.setText(String.valueOf(exponent));
-                    publicKey.setText("Public Key lautet: " + n + ", E: " + exponent);
+                    e =  BigInteger.valueOf(65537);
+                    eField.setText(String.valueOf(e));
+                    publicKey.setText("Public Key lautet: " + n + ", E: " + e);
                 }
             }
         });
+
+        JButton privateKeyButton = new JButton("Berechnen von d (Private Key)");
+        privateKeyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                phi = (p.subtract(BigInteger.ONE)).multiply(q.subtract(BigInteger.ONE));
+                BigInteger d = e.modInverse(phi);
+                privateKey.setText("Der Private Key lautet: " + d + " " + e);
+            }
+        });
+
 
 
         frame.add(new JLabel("Primzahl p: "));
@@ -87,7 +102,10 @@ public class Main {
         frame.add(new JLabel("Public Key lautet: "));
         frame.add(publicKey);
 
-        frame.setVisible(true);
+        frame.add(privateKeyButton);
+        frame.add(new JLabel("Private Key lautet: " ));
+        frame.add(privateKey);
 
+        frame.setVisible(true);
     }
 }

@@ -12,7 +12,7 @@ public class PrimeNumber {
         }
     }
 
-    public static boolean isPrime(BigInteger num) {
+    static boolean isPrime(BigInteger num) {
         if (num.compareTo(BigInteger.ONE) <= 0) {
             return false;
         }

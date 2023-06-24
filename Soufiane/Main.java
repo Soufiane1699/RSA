@@ -1,12 +1,7 @@
 package RSA.Soufiane;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.math.BigInteger;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,7 +38,7 @@ public class Main {
         System.out.println("Private Key: " + Arrays.toString(private_Key));
 
         String ascii_message = string_to_ascii.convert();
-        BigInteger[] encrypted_message = encrypt.encryption(ascii_message);
+        BigInteger[] encrypted_message = Encrypt.encryption(ascii_message);
 
     }
 }

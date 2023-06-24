@@ -7,7 +7,7 @@ class PrimeNumberGenerator {
     public int getRandomPrime() {
         int num;
         do {
-            num = random.nextInt(1000);
+            num = random.nextInt(100000);
         } while (!isPrime(num));
         return num;
     }

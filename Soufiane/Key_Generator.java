@@ -2,7 +2,7 @@ package RSA.Soufiane;
 import java.io.*;
 import java.math.BigInteger;
 
-public class key_generator {
+public class Key_Generator {
     public static void main(String[] args)throws Exception {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);

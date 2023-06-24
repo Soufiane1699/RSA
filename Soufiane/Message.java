@@ -3,7 +3,7 @@ package RSA.Soufiane;
 import java.math.BigInteger;
 import java.util.Scanner;
 
-public class message {
+public class Message {
     public static BigInteger encrypt(BigInteger m, BigInteger e, BigInteger N) {
         Scanner sc = new Scanner(System.in);
 
