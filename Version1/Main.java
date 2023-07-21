@@ -31,20 +31,10 @@ public class Main {
         System.out.println("< ---- >     ------+------>         < ---- >");
         System.out.println(" \\____/            |                  \\____/");
         System.out.println("-----------------------------------------------");
-        //System.out.println("Enter a message.");
-        //message = sc.next();
-        //StringtoAscii.processMessage();
-        //Decrypt.decrypt();
-        /*
-        System.out.println("Alice-P: " + Alice.alice_p());
-        System.out.println("Alice-Q: " + Alice.alice_q());
-        System.out.println("Alice-N: " + Alice.alice_N());
-         */
-
-        System.out.println("Bob-P: " + Bob.bob_p());
-        System.out.println("Bob-Q: " + Bob.bob_q());
-        System.out.println("Bob-N: " + Bob.bob_N());
-
+        System.out.println("Enter a message.");
+        message = sc.next();
+        StringtoAscii.processMessage();
+        Decrypt.decrypt();
     }
 }
 //

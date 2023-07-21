@@ -13,7 +13,7 @@ public class Bob {
     static SecureRandom random = new SecureRandom();
     private static int bitlaenge = 16;
 
-    private static BigInteger bob_p(){
+    public static BigInteger bob_p(){
         if (p == null) {
             p = BigInteger.probablePrime(bitlaenge, random);
         }
