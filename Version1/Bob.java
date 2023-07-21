@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 public class Bob {
     static private BigInteger phi, d;
+    static private BigInteger p, q;
     static protected BigInteger e = BigInteger.valueOf(65537);
     static HashMap <BigInteger, BigInteger> bob_public_key = new HashMap<>();
     static HashMap <BigInteger, BigInteger> bob_private_key = new HashMap<>();
@@ -13,11 +14,15 @@ public class Bob {
     private static int bitlaenge = 16;
 
     private static BigInteger bob_p(){
-        BigInteger p = BigInteger.probablePrime(bitlaenge, random);
+        if (p == null) {
+            p = BigInteger.probablePrime(bitlaenge, random);
+        }
         return p;
     }
     private static BigInteger bob_q(){
-        BigInteger q = BigInteger.probablePrime(bitlaenge, random);
+        if (q == null){
+            q = BigInteger.probablePrime(bitlaenge, random);
+        }
         return q;
     }
     public static BigInteger bob_N(){
@@ -29,7 +34,9 @@ public class Bob {
         return d;
     }
     private static BigInteger bob_phi(){
-        phi = (bob_p().subtract(BigInteger.ONE).multiply(bob_q().subtract(BigInteger.ONE)));
+        if (phi == null){
+            phi = (bob_p().subtract(BigInteger.ONE).multiply(bob_q().subtract(BigInteger.ONE)));
+        }
         return phi;
     }
     public static String getBob_private_key(){

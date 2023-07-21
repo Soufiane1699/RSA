@@ -3,20 +3,31 @@ package RSA.RSA.Version1;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.HashMap;
+/*
+Wichtig P und Q müssen als Klassenvariablen gespeichert werden,
+dadurch wird P und Q nur dann generiert wenn diese noch nicht initalisiert wurden
+Dadurch wird sichergestellt, dass dieselben Werte von P und Q verwendet werden, wenn N
+und phi berechnet werden.
+ */
 
 public class Alice {
     static protected BigInteger e = BigInteger.valueOf(65537);
     static private BigInteger phi, d;
+    static private BigInteger p, q;
     static HashMap <BigInteger, BigInteger> alice_public_key = new HashMap<>();
     static HashMap <BigInteger, BigInteger> alice_private_key = new HashMap<>();
     static SecureRandom random = new SecureRandom();
     private static int bitlaenge = 16;
-    public static BigInteger alice_p(){
-        BigInteger p = BigInteger.probablePrime(bitlaenge, random);
+    private static BigInteger alice_p(){
+        if (p == null){
+            p = BigInteger.probablePrime(bitlaenge, random);
+        }
         return p;
     }
-    public static BigInteger alice_q(){
-        BigInteger q = BigInteger.probablePrime(bitlaenge, random);
+    private static BigInteger alice_q(){
+        if (q == null){
+            q = BigInteger.probablePrime(bitlaenge, random);
+        }
         return q;
     }
     public static BigInteger alice_N(){
@@ -28,7 +39,10 @@ public class Alice {
         return d;
     }
     private static BigInteger alice_phi(){
-        phi = (alice_p().subtract(BigInteger.ONE)).multiply(alice_q().subtract(BigInteger.ONE));
+        if (phi == null){
+            phi = (alice_p().subtract(BigInteger.ONE)).multiply(alice_q().subtract(BigInteger.ONE));
+
+        }
         return phi;
     }
     public static String getAlice_private_key(){
